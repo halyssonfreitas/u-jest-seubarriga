@@ -7,7 +7,6 @@
     "test": "jest",
     "lint": "eslint src/** test/** --fix"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
