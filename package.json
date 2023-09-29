@@ -17,5 +17,7 @@
     "jest": "23.6.0",
     "supertest": "3.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "4.16.4"
+  }
 }
