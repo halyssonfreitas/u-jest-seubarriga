@@ -8,3 +8,14 @@ test('Devo conhecer as principais assertivas do jest', () => {
   expect(number).toBeGreaterThan(9);
   expect(number).toBeLessThan(11);
 });
+
+test('Devo saber trabalhar com objetos', () => {
+  const obj = { name: 'Halysson', email: 'halyssonfreitas@gmail.com' };
+  expect(obj).toHaveProperty('name');
+  expect(obj).toHaveProperty('name', 'Halysson');
+  expect(obj.name).toBe('Halysson');
+
+  const obj2 = { name: 'Halysson', email: 'halyssonfreitas@gmail.com' };
+  expect(obj).toEqual(obj2);
+  expect(obj).toBe(obj);
+});
