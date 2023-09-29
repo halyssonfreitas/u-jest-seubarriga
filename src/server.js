@@ -1,9 +1,3 @@
-import express from 'express';
-
-const app = express();
-
-app.get('/', (req, res) => {
-  res.status(200).send();
-})
+const app =  require('../src/app');
 
 app.listen(3001);
