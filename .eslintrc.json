@@ -2,8 +2,7 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "jest": true,
-        "supertest": true
+        "jest": true
     },
     "extends": "airbnb-base",
     "parserOptions": {
@@ -11,5 +10,6 @@
         "sourceType": "module"
     },
     "rules": {
+        "arrow-body-style": "off"
     }
 }
