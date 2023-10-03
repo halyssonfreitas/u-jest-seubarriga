@@ -9,3 +9,14 @@ test('Deve listar todos os usuários', () => {
       expect(res.body[0]).toHaveProperty('name', 'Halysson Freitas');
     });
 });
+
+test('Deve inserir usuário com sucesso', () => {
+  const userNameToCreate = 'Walt Disney';
+  const userEmailToCreate = 'waltdisney@gmail.com';
+  return supertest(app).post('/users')
+    .send({ name: userNameToCreate, email: userEmailToCreate })
+    .then((res) => {
+      expect(res.status).toBe(201);
+      expect(res.body.name).toBe(userNameToCreate);
+    });
+});
