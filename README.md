@@ -59,6 +59,21 @@ Teste em modo _watch_:
 npm run secure-mode
 ```
 
+## ☄️ Migrações de Banco
+
+Para criar o banco de dados é necessário rodar uma migrate.
+
+Esta depende de um ambiente, que no momento, só temos o de teste.
+
+Subindo o banco:
+```
+node_modules/.bin/knex migrate:latest --env test
+```
+
+Voltando para estado anterior:
+```
+```
+
 ## 🤝 Autores
 
 Agradecemos às seguintes pessoas que contribuíram para este projeto:
