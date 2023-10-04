@@ -13,5 +13,6 @@
         "arrow-body-style": "off",
         "import/extensions": "off",
         "import/no-extraneous-dependencies": "off"
-    }
+    },
+    "ignorePatterns": ["**/migrations/*.js"]
 }
