@@ -72,6 +72,7 @@ node_modules/.bin/knex migrate:latest --env test
 
 Voltando para estado anterior:
 ```
+node_modules/.bin/knex migrate:rollback --env test
 ```
 
 ## 🤝 Autores
