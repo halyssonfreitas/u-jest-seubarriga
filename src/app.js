@@ -1,9 +1,11 @@
-import bodyParser from 'body-parser';
+import consign from 'consign';
 import express from 'express';
 
 const app = express();
 
-app.use(bodyParser.json());
+consign({ cwd: 'src', verbose: false })
+  .include('./config/middleware.cjs')
+  .into(app);
 
 app.get('/', (req, res) => {
   res.status(200).send();
