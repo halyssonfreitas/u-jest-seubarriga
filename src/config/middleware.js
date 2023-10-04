@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser');
 
-module.exports = (app) => {
+export default (app) => {
   app.use(bodyParser.json());
 };
