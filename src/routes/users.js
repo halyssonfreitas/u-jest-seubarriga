@@ -1,13 +1,14 @@
 export default (app) => {
   const findAll = (req, res) => {
-    const users = [
-      { name: 'Halysson Freitas', email: 'halyssonfreitas@senseup.tech' },
-    ];
-    res.status(200).send(users);
+    app.db('users').select()
+      .then((result) => {
+        res.status(200).json(result);
+      });
   };
 
-  const create = (req, res) => {
-    res.status(201).json(req.body);
+  const create = async (req, res) => {
+    const result = await app.db('users').insert(req.body, '*');
+    res.status(201).json(result[0]);
   };
 
   return { findAll, create };
