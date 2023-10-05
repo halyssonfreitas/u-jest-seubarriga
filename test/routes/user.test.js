@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import app from '../src/app.js';
+import app from '../../src/app.js';
 
 test('Deve listar todos os usuários', () => {
   return supertest(app).get('/users')
