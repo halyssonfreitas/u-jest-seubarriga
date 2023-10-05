@@ -1,7 +1,9 @@
-import users from '../routes/users';
+import usersRoutesFunction from '../routes/users';
+
+const usersRoutes = usersRoutesFunction();
 
 export default (app) => {
   app.route('/users')
-    .get(users.findAll)
-    .post(users.create);
+    .get(usersRoutes.findAll)
+    .post(usersRoutes.create);
 };
