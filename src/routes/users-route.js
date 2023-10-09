@@ -2,7 +2,8 @@ export default (app) => {
   const findAll = (req, res) => {
     app.services.user.findAll()
       .then((result) => {
-        res.status(200).json(result);
+        if (result.error) return res.status(400).json(result);
+        return res.status(200).json(result);
       });
   };
 
