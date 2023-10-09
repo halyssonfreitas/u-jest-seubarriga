@@ -1,4 +1,4 @@
-import usersRoutesFunction from '../routes/users.js';
+import usersRoutesFunction from '../routes/users-route.js';
 
 export default (app) => {
   const usersRoutes = usersRoutesFunction(app);

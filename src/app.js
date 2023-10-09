@@ -4,13 +4,16 @@ import kenxLogger from 'knex-logger';
 import knexfile from '../knexfile.js';
 import middlewareConfig from './config/middlewares.js';
 import routesConfig from './config/routes.js';
+import userService from './services/user-service.js';
 
 const app = express();
 
 // TODO criar chaveamento dinâmico
 app.db = knex(knexfile.test);
-
 app.use(kenxLogger(app.db));
+
+app.services = {};
+app.services.user = userService(app);
 
 middlewareConfig(app);
 routesConfig(app);

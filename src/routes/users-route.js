@@ -7,8 +7,8 @@ export default (app) => {
   };
 
   const create = async (req, res) => {
-    const result = await app.db('users').insert(req.body, '*');
-    res.status(201).json(result[0]);
+    const user = await app.services.user.create(req.body);
+    res.status(201).json(user);
   };
 
   return { findAll, create };
