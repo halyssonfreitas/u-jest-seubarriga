@@ -12,7 +12,7 @@ O objetivo é utilizar o TDD para desenvolver um gerenciador financeiro com a se
 Sendo um projeto de estudo a sua trajetória está focada no desenvolvimento de testes como especificação e depois das funcionalidades em si,  compreendendo de forma macro o seguinte roteiro:
 
 - [x] 1 - Iniciando uma API com Testes
-- [ ] 2 - Endpoint de usuários
+- [x] 2 - Endpoint de usuários
 - [ ] 3 - Endpoint de contas
 - [ ] 4 - Endpoint de autenticação
 - [ ] 5 - Melhorias no endpoint de contas
