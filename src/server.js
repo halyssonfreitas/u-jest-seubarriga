@@ -1,3 +1,3 @@
-const app =  require('../src/app');
+import app from './app.js';
 
 app.listen(3001);
