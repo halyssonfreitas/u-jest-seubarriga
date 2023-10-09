@@ -3,6 +3,7 @@ import app from '../../src/app.js';
 
 const name = 'Halysson Freitas';
 const passwd = '123456';
+const email = `${Date.now()}@gmail.com`;
 
 test('Deve listar todos os usuários', () => {
   return supertest(app).get('/users')
@@ -14,7 +15,6 @@ test('Deve listar todos os usuários', () => {
 });
 
 test('Deve inserir usuário com sucesso', () => {
-  const email = `${Date.now()}@gmail.com`;
   return supertest(app).post('/users')
     .send({ name, email, passwd })
     .then((res) => {
@@ -48,4 +48,13 @@ test('Não deve inserir usuário sem senha', (done) => {
       done();
     })
     .catch((err) => done.fail(err));
+});
+
+test('Não deve inserir usuário com email existente', () => {
+  return supertest(app).post('/users')
+    .send({ name, email, passwd })
+    .then((res) => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Já existe um usuário com esse email');
+    });
 });
