@@ -2,7 +2,7 @@ export default (app) => {
   const findAll = (req, res) => {
     app.services.accounts.findAll()
       .then((result) => {
-        return res.status(201).json(result);
+        return res.status(200).json(result);
       });
   };
 

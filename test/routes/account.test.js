@@ -24,3 +24,11 @@ test('Deve inserir uma conta com sucesso', (done) => {
       done();
     });
 });
+
+test('Deve listar todas as contas', async () => {
+  await app.db('accounts').insert({ name: 'Acc list', user_id: user.id });
+  const result = await supertest(app).get(MAIN_ROUTE);
+  expect(result.status).toBe(200);
+  expect(result.body.length).toBeGreaterThan(0);
+  expect(result.body.pop().name).toBe('Acc list');
+});
