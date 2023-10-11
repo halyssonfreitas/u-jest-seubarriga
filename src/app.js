@@ -4,6 +4,7 @@ import kenxLogger from 'knex-logger';
 import knexfile from '../knexfile.js';
 import middlewareConfig from './config/middlewares.js';
 import routesConfig from './config/routes.js';
+import accountService from './services/account-service.js';
 import userService from './services/user-service.js';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(kenxLogger(app.db));
 
 app.services = {};
 app.services.user = userService(app);
+app.services.accounts = accountService(app);
 
 middlewareConfig(app);
 routesConfig(app);
