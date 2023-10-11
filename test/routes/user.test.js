@@ -19,7 +19,7 @@ test('Deve inserir usuário com sucesso', () => {
     .send({ name, email, passwd })
     .then((res) => {
       expect(res.status).toBe(201);
-      expect(res.body.name).toBe(name);
+      expect(res.body[0].name).toBe(name);
     });
 });
 

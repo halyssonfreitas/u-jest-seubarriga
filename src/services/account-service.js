@@ -3,7 +3,7 @@ export default (app) => {
 
   const create = async (account) => {
     const result = await app.db('accounts').insert(account, '*');
-    return result[0];
+    return result;
   };
 
   return { findAll, create };

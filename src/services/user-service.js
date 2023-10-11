@@ -10,7 +10,7 @@ export default (app) => {
     if (userDb && userDb.length > 0) return { error: 'Já existe um usuário com esse email' };
 
     const result = await app.db('users').insert(user, '*');
-    return result[0];
+    return result;
   };
 
   return { findAll, create };

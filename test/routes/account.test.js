@@ -12,7 +12,7 @@ beforeAll(async () => {
       passwd: '123',
     },
   );
-  user = { ...res };
+  user = { ...res[0] };
 });
 
 test('Deve inserir uma conta com sucesso', (done) => {
@@ -20,7 +20,7 @@ test('Deve inserir uma conta com sucesso', (done) => {
     .send({ name: 'Acc #1', user_id: user.id })
     .then((result) => {
       expect(result.status).toBe(201);
-      expect(result.body.name).toBe('Acc #1');
+      expect(result.body[0].name).toBe('Acc #1');
       done();
     });
 });
