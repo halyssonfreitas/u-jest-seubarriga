@@ -35,6 +35,8 @@ test('Não deve inserir uma conta sem nome', async () => {
     });
 });
 
+test.skip('Não dever inserir uma conta de nome duplicado, para o mesmo usuário', () => {});
+
 test('Deve listar todas as contas', async () => {
   await app.db('accounts').insert({ name: 'Acc list', user_id: user.id });
   const result = await supertest(app).get(MAIN_ROUTE);
@@ -42,6 +44,8 @@ test('Deve listar todas as contas', async () => {
   expect(result.body.length).toBeGreaterThan(0);
   expect(result.body.pop().name).toBe('Acc list');
 });
+
+test.skip('Deve listar apenas as constas do usuário', () => {});
 
 test('Deve retornar uma conta por Id', () => {
   return app.db('accounts')
@@ -55,6 +59,8 @@ test('Deve retornar uma conta por Id', () => {
       expect(result.body.pop().name).toBe('Acc By Id');
     });
 });
+
+test.skip('Não deve retornar uma conta de outro usuário', () => {});
 
 test('Deve alterar uma conta', (done) => {
   const nameEdited = 'Acc edited';
@@ -74,6 +80,8 @@ test('Deve alterar uma conta', (done) => {
     });
 });
 
+test.skip('Não deve alterar uma conta de outro usuário', () => {});
+
 test('Deve remover uma conta', async () => {
   const accountsId = await app.db('accounts')
     .insert({ name: 'Acc to delete', user_id: user.id }, ['id']);
@@ -82,3 +90,5 @@ test('Deve remover uma conta', async () => {
     .send()
     .expect(202);
 });
+
+test.skip('Não deve remover uma conta de outro usuário', () => {});
