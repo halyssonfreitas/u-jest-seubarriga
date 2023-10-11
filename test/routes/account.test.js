@@ -25,6 +25,16 @@ test('Deve inserir uma conta com sucesso', (done) => {
     });
 });
 
+test('Não deve inserir uma conta sem nome', async () => {
+  return supertest(app).post(MAIN_ROUTE)
+    .send({ user_id: user.id })
+    .then(async (result) => {
+      expect(result.status).toBe(400);
+      expect(result.body)
+        .toHaveProperty('error', 'Nome é um atributo obrigatório');
+    });
+});
+
 test('Deve listar todas as contas', async () => {
   await app.db('accounts').insert({ name: 'Acc list', user_id: user.id });
   const result = await supertest(app).get(MAIN_ROUTE);
