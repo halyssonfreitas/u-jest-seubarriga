@@ -13,4 +13,6 @@ export default (app) => {
   app.route('/accounts')
     .get(accountRoutes.findAll)
     .post(accountRoutes.create);
+  app.route('/accounts/:id')
+    .get(accountRoutes.find);
 };

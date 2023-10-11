@@ -32,3 +32,16 @@ test('Deve listar todas as contas', async () => {
   expect(result.body.length).toBeGreaterThan(0);
   expect(result.body.pop().name).toBe('Acc list');
 });
+
+test('Deve retornar uma conta por Id', () => {
+  return app.db('accounts')
+    .insert({ name: 'Acc By Id', user_id: user.id }, ['id'])
+    .then((accountIds) => {
+      return supertest(app).get(`${MAIN_ROUTE}/${accountIds[0].id}`);
+    })
+    .then((result) => {
+      expect(result.status).toBe(200);
+      expect(result.body).toHaveLength(1);
+      expect(result.body.pop().name).toBe('Acc By Id');
+    });
+});
