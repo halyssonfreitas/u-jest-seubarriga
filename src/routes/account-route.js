@@ -19,5 +19,13 @@ export default (app) => {
     return res.status(201).json(result);
   };
 
-  return { findAll, find, create };
+  const update = async (req, res) => {
+    const result = await app.services.accounts.update(req.params.id, req.body);
+    if (result.error) return res.status(400).json(result).send();
+    return res.status(200).json(result);
+  };
+
+  return {
+    findAll, find, create, update,
+  };
 };

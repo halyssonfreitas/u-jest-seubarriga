@@ -45,3 +45,21 @@ test('Deve retornar uma conta por Id', () => {
       expect(result.body.pop().name).toBe('Acc By Id');
     });
 });
+
+test('Deve alterar uma conta', (done) => {
+  const nameEdited = 'Acc edited';
+  app.db('accounts')
+    .insert({ name: 'Acc to edit', user_id: user.id }, ['id'])
+    .then((accountsId) => {
+      supertest(app)
+        .put(`${MAIN_ROUTE}/${accountsId[0].id}`)
+        .send({ name: nameEdited, user_id: user.id }, ['id'])
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) return done.fail(err);
+          expect(res.body.pop().name).toBe(nameEdited);
+          return done();
+        });
+    });
+});

@@ -6,5 +6,12 @@ export default (app) => {
     return result;
   };
 
-  return { findAll, create };
+  const update = async (id, account) => {
+    const result = await app.db('accounts')
+      .where('id', '=', id)
+      .update(account, '*');
+    return result;
+  };
+
+  return { findAll, create, update };
 };
