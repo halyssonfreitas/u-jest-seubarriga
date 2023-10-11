@@ -15,5 +15,6 @@ export default (app) => {
     .post(accountRoutes.create);
   app.route('/accounts/:id')
     .get(accountRoutes.find)
-    .put(accountRoutes.update);
+    .put(accountRoutes.update)
+    .delete(accountRoutes.remove);
 };

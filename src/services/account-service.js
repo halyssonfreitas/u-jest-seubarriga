@@ -13,5 +13,14 @@ export default (app) => {
     return result;
   };
 
-  return { findAll, create, update };
+  const remove = async (id) => {
+    const result = await app.db('accounts')
+      .where({ id })
+      .del();
+    return result;
+  };
+
+  return {
+    findAll, create, update, remove,
+  };
 };

@@ -63,3 +63,12 @@ test('Deve alterar uma conta', (done) => {
         });
     });
 });
+
+test('Deve remover uma conta', async () => {
+  const accountsId = await app.db('accounts')
+    .insert({ name: 'Acc to delete', user_id: user.id }, ['id']);
+  await supertest(app)
+    .delete(`${MAIN_ROUTE}/${accountsId[0].id}`)
+    .send()
+    .expect(202);
+});

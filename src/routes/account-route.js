@@ -25,7 +25,13 @@ export default (app) => {
     return res.status(200).json(result);
   };
 
+  const remove = async (req, res) => {
+    const result = await app.services.accounts.remove(req.params.id);
+    if (result.error) return res.status(400).json(result).send();
+    return res.status(202).json(result);
+  };
+
   return {
-    findAll, find, create, update,
+    findAll, find, create, update, remove,
   };
 };
