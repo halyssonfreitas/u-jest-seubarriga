@@ -1,13 +1,13 @@
 export default (app) => {
   const findAll = (req, res) => {
-    app.services.accounts.findAll()
+    app.services.account.findAll()
       .then((result) => {
         return res.status(200).json(result);
       });
   };
 
   const find = (req, res) => {
-    app.services.accounts.findAll(req.params)
+    app.services.account.findAll(req.params)
       .then((result) => {
         return res.status(200).json(result);
       });
@@ -15,7 +15,7 @@ export default (app) => {
 
   const create = async (req, res) => {
     try {
-      const result = await app.services.accounts.create(req.body);
+      const result = await app.services.account.create(req.body);
       return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json(error).send();
@@ -24,7 +24,7 @@ export default (app) => {
 
   const update = async (req, res) => {
     try {
-      const result = await app.services.accounts.update(req.params.id, req.body);
+      const result = await app.services.account.update(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json(error).send();
@@ -33,7 +33,7 @@ export default (app) => {
 
   const remove = async (req, res) => {
     try {
-      const result = await app.services.accounts.remove(req.params.id);
+      const result = await app.services.account.remove(req.params.id);
       return res.status(202).json(result);
     } catch (error) {
       return res.status(400).json(error).send();
