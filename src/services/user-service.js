@@ -1,7 +1,9 @@
 import ValidationError from '../errors/validation-error';
 
+const dataToReturn = ['id', 'name', 'email'];
+
 export default (app) => {
-  const findAll = (filter = {}) => app.db('users').where(filter).select();
+  const findAll = (filter = {}) => app.db('users').where(filter).select(dataToReturn);
 
   const create = async (user) => {
     if (!user.name) throw new ValidationError('Nome é um atributo obrigatório');
@@ -11,7 +13,7 @@ export default (app) => {
     const userDb = await findAll({ email: user.email });
     if (userDb && userDb.length > 0) throw new ValidationError('Já existe um usuário com esse email');
 
-    const result = await app.db('users').insert(user, '*');
+    const result = await app.db('users').insert(user, dataToReturn);
     return result;
   };
 
