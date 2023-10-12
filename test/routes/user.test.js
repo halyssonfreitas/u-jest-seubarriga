@@ -11,6 +11,7 @@ test('Deve listar todos os usuários', () => {
       expect(res.status).toBe(200);
       expect(res.body.length).toBeGreaterThan(0);
       expect(res.body[0]).toHaveProperty('name', name);
+      expect(res.body[0]).not.toHaveProperty('passwd');
     });
 });
 
