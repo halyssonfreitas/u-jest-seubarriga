@@ -13,7 +13,7 @@ Sendo um projeto de estudo a sua trajetória está focada no desenvolvimento de 
 
 - [x] 1 - Iniciando uma API com Testes
 - [x] 2 - Endpoint de usuários
-- [ ] 3 - Endpoint de contas
+- [x] 3 - Endpoint de contas
 - [ ] 4 - Endpoint de autenticação
 - [ ] 5 - Melhorias no endpoint de contas
 - [ ] 6 - Endpoint de transações
