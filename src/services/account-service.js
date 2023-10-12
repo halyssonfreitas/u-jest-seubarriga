@@ -1,8 +1,10 @@
+import ValidationError from '../errors/validation-errors';
+
 export default (app) => {
   const findAll = (filter = {}) => app.db('accounts').where(filter).select();
 
   const create = async (account) => {
-    if (!account.name) return { error: 'Nome é um atributo obrigatório' };
+    if (!account.name) throw new ValidationError('Nome é um atributo obrigatório');
     const result = await app.db('accounts').insert(account, '*');
     return result;
   };

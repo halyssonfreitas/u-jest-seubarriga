@@ -7,9 +7,12 @@ export default (app) => {
   };
 
   const create = async (req, res) => {
-    const result = await app.services.user.create(req.body);
-    if (result.error) return res.status(400).json(result).send();
-    return res.status(201).json(result);
+    try {
+      const result = await app.services.user.create(req.body);
+      return res.status(201).json(result);
+    } catch (error) {
+      return res.status(400).json(error).send();
+    }
   };
 
   return { findAll, create };
