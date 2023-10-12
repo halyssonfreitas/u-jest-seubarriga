@@ -31,7 +31,7 @@ test('Não deve inserir uma conta sem nome', async () => {
     .then(async (result) => {
       expect(result.status).toBe(400);
       expect(result.body)
-        .toHaveProperty('error', 'Nome é um atributo obrigatório');
+        .toHaveProperty('message', 'Nome é um atributo obrigatório');
     });
 });
 

@@ -28,7 +28,7 @@ test('Não deve inserir usuário sem nome', () => {
     .send({ email: 'halyssonfreitas@gmail.com', passwd })
     .then((res) => {
       expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Nome é um atributo obrigatório');
+      expect(res.body.message).toBe('Nome é um atributo obrigatório');
     });
 });
 
@@ -36,7 +36,7 @@ test('Não deve inserir usuário sem email', async () => {
   const res = await supertest(app).post('/users')
     .send({ name, passwd });
   expect(res.status).toBe(400);
-  expect(res.body.error).toBe('Email é um atributo obrigatório');
+  expect(res.body.message).toBe('Email é um atributo obrigatório');
 });
 
 test('Não deve inserir usuário sem senha', (done) => {
@@ -44,7 +44,7 @@ test('Não deve inserir usuário sem senha', (done) => {
     .send({ name, email: 'halyssonfreitas@gmail.com' })
     .then((res) => {
       expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Senha é um atributo obrigatório');
+      expect(res.body.message).toBe('Senha é um atributo obrigatório');
       done();
     })
     .catch((err) => done.fail(err));
@@ -55,6 +55,6 @@ test('Não deve inserir usuário com email existente', () => {
     .send({ name, email, passwd })
     .then((res) => {
       expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Já existe um usuário com esse email');
+      expect(res.body.message).toBe('Já existe um usuário com esse email');
     });
 });

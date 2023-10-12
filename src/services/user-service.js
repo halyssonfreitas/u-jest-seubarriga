@@ -1,4 +1,4 @@
-import ValidationError from '../errors/validation-errors';
+import ValidationError from '../errors/validation-error';
 
 export default (app) => {
   const findAll = (filter = {}) => app.db('users').where(filter).select();
