@@ -1,8 +1,20 @@
-import usersRoutesFunction from '../routes/users-route.js';
+import accountRoutFunction from '../routes/account-route.js';
+import userRouteFunction from '../routes/user-route.js';
 
 export default (app) => {
-  const usersRoutes = usersRoutesFunction(app);
+  // USER
+  const userRoutes = userRouteFunction(app);
   app.route('/users')
-    .get(usersRoutes.findAll)
-    .post(usersRoutes.create);
+    .get(userRoutes.findAll)
+    .post(userRoutes.create);
+
+  // ACCOUNTS
+  const accountRoutes = accountRoutFunction(app);
+  app.route('/accounts')
+    .get(accountRoutes.findAll)
+    .post(accountRoutes.create);
+  app.route('/accounts/:id')
+    .get(accountRoutes.find)
+    .put(accountRoutes.update)
+    .delete(accountRoutes.remove);
 };
