@@ -1,9 +1,14 @@
+import bcrypt from 'bcrypt';
 import supertest from 'supertest';
 import app from '../../src/app.js';
 
 const name = 'Halysson Freitas';
 const passwd = '123456';
 const email = `${Date.now()}@gmail.com`;
+
+function generateEmail() {
+  return `${Date.now()}@gmail.com`;
+}
 
 test('Deve listar todos os usuários', () => {
   return supertest(app).get('/users')
@@ -23,6 +28,22 @@ test('Deve inserir usuário com sucesso', () => {
       expect(res.body[0].name).toBe(name);
       expect(res.body[0]).not.toHaveProperty('passwd');
     });
+});
+
+test('Deve armazenar senha criptografada', async () => {
+  const res = await supertest(app).post('/users')
+    .send({ name, email: generateEmail(), passwd });
+  expect(res.status).toBe(201);
+
+  const { id } = res.body[0];
+
+  const userDB = await app.services
+    .user.findOneByIdWithPasswd(id);
+
+  expect(userDB.passwd).not.toBeUndefined();
+  expect(passwd).not.toBe(userDB.passwd);
+  expect(bcrypt.compareSync(passwd, userDB.passwd, (err, result) => result))
+    .toBeTruthy();
 });
 
 test('Não deve inserir usuário sem nome', () => {
