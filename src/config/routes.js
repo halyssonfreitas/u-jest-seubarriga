@@ -1,4 +1,5 @@
 import accountRoutFunction from '../routes/account-route.js';
+import authRouteFunction from '../routes/auth-route.js';
 import userRouteFunction from '../routes/user-route.js';
 
 export default (app) => {
@@ -17,4 +18,9 @@ export default (app) => {
     .get(accountRoutes.find)
     .put(accountRoutes.update)
     .delete(accountRoutes.remove);
+
+  // AUTH
+  const authRoutes = authRouteFunction(app);
+  app.route('/auth/signin')
+    .post(authRoutes.signin);
 };

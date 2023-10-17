@@ -14,7 +14,9 @@ export default (app) => {
     return app.db('users').where({ id }).first('*');
   };
 
-  const findOneByEmail = (email) => app.db('users').where({ email }).first();
+  const findOneByEmail = (email) => app.db('users').where({ email }).first(dataToReturn);
+
+  const findOneByEmailWithPasswd = (email) => app.db('users').where({ email }).first();
 
   const create = async (user) => {
     if (!user.name) throw new ValidationError('Nome é um atributo obrigatório');
@@ -33,6 +35,6 @@ export default (app) => {
   };
 
   return {
-    findAll, findOneById, findOneByIdWithPasswd, findOneByEmail, create,
+    findAll, findOneById, findOneByIdWithPasswd, findOneByEmail, findOneByEmailWithPasswd, create,
   };
 };
