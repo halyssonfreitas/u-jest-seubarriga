@@ -16,7 +16,15 @@ export default (app) => {
 
   const findOneByEmail = (email) => app.db('users').where({ email }).first(dataToReturn);
 
-  const findOneByEmailWithPasswd = (email) => app.db('users').where({ email }).first();
+  const findOneByEmailWithPasswd = async (email) => {
+    try {
+      const userDB = await app.db('users').where({ email }).first();
+      console.log(userDB);
+      return userDB;
+    } catch (error) {
+      return undefined;
+    }
+  };
 
   const create = async (user) => {
     if (!user.name) throw new ValidationError('Nome é um atributo obrigatório');
